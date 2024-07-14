@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("express-async-errors");
+const morgan = require("morgan");
 const port = process.env.PORT || 5000;
 
 //express
@@ -10,6 +11,7 @@ const connectDB = require("./db/connect");
 //midlewares
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
+app.use(morgan("tiny"));
 app.use(express.json());
 //routes
 app.get("/", (req, res) => {
